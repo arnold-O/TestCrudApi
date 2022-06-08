@@ -4,12 +4,12 @@ const { registeruser, selectAllUsers, getSingleUser, UpdateUser,deleteUser, auth
 const router = express.Router();
 
 
-router.route("/user").post(registeruser).get(selectAllUsers)
-router.route('/user/:id').get(getSingleUser).put(UpdateUser).delete(deleteUser)
+router.route("/").post(registeruser).get(selectAllUsers)
+router.route('/:id').get(getSingleUser).put(UpdateUser).delete(deleteUser)
 // authenticated user
 
 
-router.route('/user/authuser').post(authUser)
+router.route('/authuser').post(authUser)
 
 
 

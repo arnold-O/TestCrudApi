@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 // mouting Multiple router
-app.use("/test.com/", userRoutes);
+app.use("/user", userRoutes);
 
 // app.all("*", (req, res, next) => {
 //   next(new ErrorHandler(`cant find ${req.originalUrl} on this server`, 404));
