@@ -7,6 +7,8 @@ const ErrorHandler = require("../utils/errorHandler");
 
 exports.registeruser = catchAsyncErrors( async (req, res, next) => {
     const { firstname, lastname, gender, date_of_birth, password, username } = req.body;
+
+    console.log(req.body)
        
     const newUSer = await User.create({
         firstname,

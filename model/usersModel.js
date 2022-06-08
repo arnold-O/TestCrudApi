@@ -15,12 +15,12 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: [true, "please enter your gender"],
+    required: [true, "please select your gender"],
    
   },
   date_of_birth: {
     type: String,
-    required: [true, "please enter your Date nof Birth"],
+    required: [true, "please enter your Date 0f Birth"],
     
   },
   password:{
@@ -36,14 +36,17 @@ const userSchema = new mongoose.Schema({
 
 }, {timestamps:true})
 
-userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) {
-      next();
-    }
+
+
+            // for hashing the authenticated user password
+// userSchema.pre("save", async function (next) {
+//     if (!this.isModified("password")) {
+//       next();
+//     }
     
-    this.password = await bcrypt.hash(this.password, 10);
-    next()
-  });
+//     this.password = await bcrypt.hash(this.password, 10);
+//     next()
+//   });
 
 userSchema.methods.correctPassword = async function (enteredPassword) {
    
