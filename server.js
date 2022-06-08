@@ -6,7 +6,7 @@ dotenv.config({ path: "./config.env" });
 
 
 
-const DB = process.env.DATABASE_LOCAL;
+const DB = process.env.DATABASE;
 
 mongoose
   .connect(DB, {
