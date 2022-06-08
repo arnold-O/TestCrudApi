@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   lastname: {
     type: String,
-    required: [true, "lastname enis required"],
+    required: [true, "lastname is required"],
    
   },
   gender: {
@@ -36,6 +36,15 @@ const userSchema = new mongoose.Schema({
 
 }, {timestamps:true})
 
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+      next();
+    }
+    
+    this.password = await bcrypt.hash(this.password, 10);
+    next()
+  });
+
 userSchema.methods.correctPassword = async function (enteredPassword) {
    
 
@@ -43,4 +52,4 @@ userSchema.methods.correctPassword = async function (enteredPassword) {
   };
 
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema)
